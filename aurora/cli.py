@@ -4,6 +4,7 @@ import argparse
 import webbrowser
 
 from aurora.database import new_engine, new_session, Base
+from aurora import util
 
 DEFAULT_PORT = 5000
 DEFAULT_HOST = 'localhost'
@@ -44,9 +45,13 @@ def main(argv=sys.argv[1:]):
 
     if os.path.isfile(args.input):
         engine = new_engine(catalog=args.input)
+        session = new_session(engine)
     else:
+        files = util.walk_dir(args.input)
+
         engine = new_engine()
-    session = new_session(engine)
+        session = new_session(engine)
+
 
     if args.live:
         print("Fuck it, we'll do it live")

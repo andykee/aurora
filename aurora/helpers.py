@@ -29,3 +29,7 @@ def insert_data(session, file, driver=Data, ignore_duplicates=True):
 
 def insert_tag(session, name):
     safe_insert(session, Tag(name=name))
+
+
+def infer_driver_from_ext(file_extension):
+    return Data
