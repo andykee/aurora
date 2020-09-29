@@ -6,6 +6,7 @@ from aurora.models import File, Data, Tag, Category
 def safe_insert(session, instance):
     try:
         session.add(instance)
+        session.commit()
     except IntegrityError as e:
         session.rollback()
         raise e
@@ -14,6 +15,7 @@ def safe_insert(session, instance):
 def safe_insert_all(session, instances):
     try:
         session.add_all(instances)
+        session.commit()
     except IntegrityError as e:
         session.rollback()
         raise e
