@@ -3,6 +3,8 @@ import hashlib
 import importlib
 import pkgutil
 
+import aurora.drivers
+
 def walk_dir(path):
     files = []
     # r=root, d=directories, f = files
@@ -31,6 +33,12 @@ def iter_namespace(ns_pkg):
     return pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + ".")
 
 
+def import_namespace_plugins():
+    for finder, name, ispkg in iter_namespace(aurora.drivers):
+        if ispkg:
+            importlib.import_module(name)
+
+
 def get_namespace_plugins(ns_pkg=None):
     if ns_pkg is None:
         import aurora.drivers as ns_pkg
@@ -41,6 +49,7 @@ def get_namespace_plugins(ns_pkg=None):
         in iter_namespace(ns_pkg)
         if ispkg
     }
+
 
 
 def list_drivers(ns_pkg=None):

@@ -77,7 +77,7 @@ class Data(DataIdMixin, Base):
             }
         else:
             return {'polymorphic_identity':cls.__name__}
-            
+
     type = Column(String(50))
     file_id = Column(Integer, ForeignKey('file.id'))
     file = relationship('File', back_populates='data')

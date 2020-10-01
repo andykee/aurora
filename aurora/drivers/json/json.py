@@ -6,7 +6,8 @@ from sqlalchemy import JSON as SQLAlchemy_JSON
 from aurora.models import Data
 
 class JSON(Data):
-    
+    __pattern__ = '(?i).*\.json$'
+
     data = Column(SQLAlchemy_JSON)
     
     def __init__(self, file):

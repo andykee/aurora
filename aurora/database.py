@@ -2,18 +2,18 @@ import os
 
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 
 def new_engine(catalog=None):
     if catalog is None:
         return create_engine('sqlite://')
     else:
-        return create_engine(f'sqlite://{catalog}')
+        return create_engine(f'sqlite:///{catalog}')
 
 
 def new_session(engine):
-    return sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    return scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 
 
 Base = declarative_base()
