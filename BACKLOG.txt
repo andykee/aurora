@@ -1,0 +1,36 @@
+
+
+New plan:
+---------
+
+Launch from vanilla command line call
+
+Do one of the following:
+* Web UI presents option to create new catalog or load catalog
+* Defaults to new catalog with options to load catalog file 
+
+Live monitoring started/stopped from within UI
+
+Make sure this all works with one user or multiple users on the same catalog
+
+
+Minimally functional demo should do the following:
+
+* Launch from command line
+* Extract metadata from all files in current directory (including subdirectories)
+* SQLite backend with REST API
+* Web display of all data in directory
+
+
+Backlog
+-------
+* Live mode
+* Data types with pre-specified metadata
+* Image type with thumbnail generation
+* Image stacks
+* Static catalogs
+* Collections
+* Tags
+* Configuration
+* Modify configuration in web app
+* Support custom datatype Jinja templates for details view

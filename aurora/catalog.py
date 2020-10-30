@@ -13,7 +13,7 @@ import re
 from sqlalchemy.exc import IntegrityError
 
 from aurora.models import File, Data, Tag, Category
-from aurora.util import import_namespace_plugins
+from aurora.drivers.util import import_namespace_plugins
 
 
 import_namespace_plugins()
@@ -52,10 +52,12 @@ def insert_data(session, file, driver=Data, ignore_duplicates=True):
     safe_insert_all(session, [f,d])
 
 
-def get_driver(file):
-    for pattern in DRIVER_MAPPING.keys():
+def get_driver(file, driver_mapping):
+    # driver_mapping is a dict where the keys are regexp patterns and the corresponding
+    # values are the actual driver objects
+    for pattern in driver_mapping.keys():
         if re.fullmatch(pattern, file):
-            return DRIVER_MAPPING[pattern]
+            return driver_mapping[pattern]
     return Data
 
 

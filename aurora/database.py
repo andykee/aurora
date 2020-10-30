@@ -2,7 +2,7 @@ import os
 
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.orm import sessionmaker
 
 
 def new_engine(catalog=None):
@@ -13,7 +13,7 @@ def new_engine(catalog=None):
 
 
 def new_session(engine):
-    return scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
+    return sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 Base = declarative_base()
